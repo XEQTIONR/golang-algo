@@ -1,12 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"gosort/algo"
+	"fmt"
 )
 
 func main() {
 	arr := []int64{11,1, 16, 6, 4, 5, 3, 15, 10}
-	sorted, _, _ := algo.BubbleSort(arr, true)
-	fmt.Println(sorted)
+	
+	_, swaps, comparisons := algo.SelectionSort(arr, true)
+
+	fmt.Printf("Swaps: %v, Comparisons: %v", swaps, comparisons)
 }
