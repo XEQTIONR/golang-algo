@@ -7,40 +7,27 @@ func InsertionSort(arr []int64, asc bool) ([]int64, int, int) {
 	fmt.Println("Insertion Sort.")
 	fmt.Printf("Unsorted: %v\n\n", arr)
 
-	inserts := 0
 	comparisons := 0
-	sorted := []int64{arr[0]}
+	swaps := 0
 
-
-	for i:= 1; i< len(arr); i++ {
-		sorted, comparisons = insert(sorted, arr[i], asc, comparisons)
-		inserts++
-	}
-
-	fmt.Printf("Sorted: %v\n", sorted)
-	return sorted, inserts, comparisons
-}
-
-func insert(arr2 []int64, val int64, asc bool, comparisons int) ([]int64, int) {
-
-	temp := []int64{}
-	inserted := false
-	
-	for j, v := range arr2 {
-		comparisons++
-		if (asc && ( val > v )) || ( !asc && (val < v) ) {
-			temp = append(temp, v)
-		} else {
-			temp = append(temp, val)
-			temp = append(temp, arr2[j:]...)
-			inserted = true
-			break
+	for i:=1; i<len(arr); i++ {
+		elem := arr[i]
+		j:= i-1
+		for j>=0 {
+			comparisons++
+			if (asc && arr[j] > elem) || ( !asc && arr[j] <= elem) { // if we werent counting comparisons this could be in the loop condition.
+				arr[j+1] = arr[j]
+				swaps++
+				j--
+			} else {
+				break
+			}
 		}
+		arr[j+1] = elem
 	}
 
-	if !inserted {
-		temp = append(temp, val)
-	}
+	fmt.Printf("Sorted: %v\n",  arr)
 
-	return temp, comparisons
+	return arr, swaps, comparisons
+
 }
