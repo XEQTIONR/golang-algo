@@ -24,15 +24,10 @@ func sort(arr []int64, asc bool) []int64{
 				return []int64{arr[1], arr[0]}
 			}
 		default:
-			left, right := split(arr)
-			left = sort(left, asc)
-			right = sort(right, asc)
+			left :=  sort(arr[ :(len(arr)/2)], asc)
+			right := sort(arr[len(arr)/2: ], asc)
 			return merge(left, right, asc)
 	}
-}
-
-func split(arr []int64) ([]int64, []int64) {
-	return arr[:(len(arr)/2)], arr[len(arr)/2:]
 }
 
 func merge(a, b []int64, asc bool) []int64 {
