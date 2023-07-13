@@ -17,6 +17,7 @@ func BubbleSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 
 	for i := range arr[:len(arr)-1] {
 
+		swapped := false
 		for j := range arr[:len(arr)-i-1] {
 
 			compare := arr[j] > arr[j+1]
@@ -24,10 +25,14 @@ func BubbleSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 			if (compare && asc) || !(compare || asc) {
 				swapper(j, j+1)
 				swaps++
+				swapped = true
 			}
 			comparisons++
 		}
 		fmt.Printf("After pass %v : %v\n", i+1, arr)
+		if !swapped {
+			break
+		}
 	}
 	return arr, swaps, comparisons
 }
