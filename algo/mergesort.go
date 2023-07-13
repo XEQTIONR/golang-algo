@@ -1,8 +1,11 @@
 package algo
 
-import "fmt"
+import (
+	"example/gosort/types"
+	"fmt"
+)
 
-func MergeSort(arr []int64, asc bool) ([]int64, int, int) {
+func MergeSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 
 	fmt.Println("Merge Sort.")
 	fmt.Printf("Unsorted: %v\n\n", arr)
@@ -13,7 +16,7 @@ func MergeSort(arr []int64, asc bool) ([]int64, int, int) {
 	return sorted, 0, 0
 }
 
-func sort(arr []int64, asc bool) []int64{
+func sort[T types.Number](arr []T, asc bool) []T {
 	switch len(arr) {
 		case 1:
 			return arr
@@ -21,7 +24,7 @@ func sort(arr []int64, asc bool) []int64{
 			if (asc && arr[0] < arr[1]) || (!asc && arr[0] >= arr[1]) {
 				return arr
 			} else {
-				return []int64{arr[1], arr[0]}
+				return []T{arr[1], arr[0]}
 			}
 		default:
 			left :=  sort(arr[ :(len(arr)/2)], asc)
@@ -30,8 +33,8 @@ func sort(arr []int64, asc bool) []int64{
 	}
 }
 
-func merge(a, b []int64, asc bool) []int64 {
-	out:= make([]int64, len(a) + len(b))
+func merge[T types.Number](a, b []T, asc bool) []T {
+	out:= make([]T, len(a) + len(b))
 	ai, bi := 0, 0
 	
 	for i, _ := range out {

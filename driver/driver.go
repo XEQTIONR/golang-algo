@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gosort/algo"
+	"example/gosort/algo"
 	"fmt"
 )
 

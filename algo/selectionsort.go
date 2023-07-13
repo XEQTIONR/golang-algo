@@ -1,11 +1,12 @@
 package algo
 
 import (
+	"example/gosort/types"
 	"fmt"
 	"reflect"
 )
 
-func SelectionSort(arr []int64, asc bool) ([]int64, int, int) {
+func SelectionSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 	
 	fmt.Println("Selection Sort.")
 	fmt.Printf("Unsorted: %v\n\n", arr)

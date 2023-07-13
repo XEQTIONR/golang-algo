@@ -1,11 +1,12 @@
 package algo
 
 import (
+	"example/gosort/types"
 	"fmt"
 	"reflect"
 )
 
-func Quicksort(a []int64, asc bool) ([]int64, int, int) {
+func Quicksort[T types.Number](a []T, asc bool) ([]T, int, int) {
 	fmt.Println("Quicksort Sort.")
 	fmt.Printf("Unsorted: %v\n\n", a)
 
@@ -16,7 +17,7 @@ func Quicksort(a []int64, asc bool) ([]int64, int, int) {
 	return a, 0, 0
 }
 
-func quicksort(a2 []int64, asc bool) {
+func quicksort[T types.Number](a2 []T, asc bool) {
 	if len(a2) > 1 {
 		q := partition(a2, asc)
 		quicksort(a2[:q], asc)
@@ -24,7 +25,7 @@ func quicksort(a2 []int64, asc bool) {
 	}
 }
 
-func partition(arr []int64, asc bool) (int) {
+func partition[T types.Number](arr []T, asc bool) (int) {
 	x := arr[len(arr) - 1]
 	i := -1
 	swap := reflect.Swapper(arr)

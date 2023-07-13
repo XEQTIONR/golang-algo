@@ -3,9 +3,10 @@ package algo
 import (
 	"fmt"
 	"reflect"
+	"example/gosort/types"
 )
 
-func BubbleSort(arr []int64, asc bool) ([]int64, int, int) {
+func BubbleSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 
 	fmt.Println("Bubble Sort.")
 	fmt.Printf("Unsorted: %v\n\n", arr)

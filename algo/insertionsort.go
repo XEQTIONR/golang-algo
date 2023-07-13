@@ -1,8 +1,11 @@
 package algo
 
-import "fmt"
+import (
+	"example/gosort/types"
+	"fmt"
+)
 
-func InsertionSort(arr []int64, asc bool) ([]int64, int, int) {
+func InsertionSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 
 	fmt.Println("Insertion Sort.")
 	fmt.Printf("Unsorted: %v\n\n", arr)

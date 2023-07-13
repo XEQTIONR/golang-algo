@@ -3,15 +3,16 @@ package algo
 import (
 	"fmt"
 	"reflect"
+	"example/gosort/types"
 )
 
-type Heap struct {
-	array []int64
+type Heap[T types.Number] struct {
+	array []T
 	size int
 }
 
-func Heapsort(arr []int64, asc bool) ([]int64, int, int) {
-	heap := Heap{ array: arr, size: len(arr) }
+func Heapsort[T types.Number](arr []T, asc bool) ([]T, int, int) {
+	heap := Heap[T]{ array: arr, size: len(arr) }
 	swap := reflect.Swapper(heap.array)
 
 	fmt.Println("Heapsort");
@@ -41,7 +42,7 @@ func right(i int) int {
 	return 2*i + 2
 }
 
-func(h *Heap) heapify(i int, asc bool) {
+func (h *Heap[T]) heapify(i int, asc bool) {
 	swap := reflect.Swapper(h.array)
 	l := left(i)
 	r := right(i)
@@ -63,7 +64,7 @@ func(h *Heap) heapify(i int, asc bool) {
 	}
 }
 
-func (h *Heap) buildHeap(n int, asc bool) {
+func (h *Heap[T]) buildHeap(n int, asc bool) {
 	h.size = n
 	for i:= n/2; i>=0; i-- {
 		h.heapify(i, asc)
