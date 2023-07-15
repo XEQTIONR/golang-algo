@@ -1,9 +1,9 @@
-package algo
+package sorting
 
 import (
 	"fmt"
 	"reflect"
-	"example/gosort/types"
+	"example/algo/types"
 )
 
 func BubbleSort[T types.Number](arr []T, asc bool) ([]T, int, int) {

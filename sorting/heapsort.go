@@ -1,9 +1,9 @@
-package algo
+package sorting
 
 import (
 	"fmt"
 	"reflect"
-	"example/gosort/types"
+	"example/algo/types"
 )
 
 type Heap[T types.Number] struct {

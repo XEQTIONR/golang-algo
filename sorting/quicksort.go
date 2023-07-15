@@ -1,7 +1,7 @@
-package algo
+package sorting
 
 import (
-	"example/gosort/types"
+	"example/algo/types"
 	"fmt"
 	"reflect"
 )
