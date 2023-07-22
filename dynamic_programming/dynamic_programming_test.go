@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func TestRecursiveRodCutting(t *testing.T) {
+func TestRodCutting(t *testing.T) {
 
 	rMax4, _ := RecursiveRodCutting(4, priceList(4))
 	rMax7, _ := RecursiveRodCutting(7, priceList(7))
@@ -39,6 +39,49 @@ func TestRecursiveRodCutting(t *testing.T) {
 		t.Errorf(errorMessage(18, mMax10))
 	}
 
+}
+
+func TestCoinChange(t *testing.T) {
+
+	s := []int{1,3,5,7}
+	x := 7
+	m, _ := MemoisedCoinChange(x, s)
+
+	if !reflect.DeepEqual(m, 1) {
+		t.Errorf(errorMessage(m, 1))
+	}
+
+	m, _ = RecursiveCoinChange(x, s)
+
+	if !reflect.DeepEqual(m, 1) {
+		t.Errorf(errorMessage(m, 1))
+	}
+
+	x = 10
+	m, _ = MemoisedCoinChange(x, s)
+
+	if !reflect.DeepEqual(m, 2) {
+		t.Errorf(errorMessage(m, 2))
+	}
+
+	m, _ = RecursiveCoinChange(x, s)
+
+	if !reflect.DeepEqual(m, 2) {
+		t.Errorf(errorMessage(m, 2))
+	}
+
+	x = 18
+	m, _ = MemoisedCoinChange(x, s)
+
+	if !reflect.DeepEqual(m, 4) {
+		t.Errorf(errorMessage(m, 4))
+	}
+
+	m, _ = RecursiveCoinChange(x, s)
+
+	if !reflect.DeepEqual(m, 4) {
+		t.Errorf(errorMessage(m, 2))
+	}
 }
 
 func priceList(n int) map[int]int {
