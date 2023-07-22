@@ -1,14 +1,16 @@
 package dynamic_programming
 
-func RecursiveRodCutting(length int, list map[int]int) (int, int) {
+import "example/algo/types"
+
+func RecursiveRodCutting[L types.Number, T types.Number](length L, list map[L]T) (T, int) {
 	calls := 1 // counting the call in the current instance
 
-	if length == 0 {
-		return 0, calls
+	if length == L(0) {
+		return T(0), calls
 	}
 
-	max := -1
-	for i:=1; i<=length; i++ {
+	max := T(-1)
+	for i:=L(1); i<=length; i++ {
 		p, c :=  RecursiveRodCutting(length-i, list)
 		part := p + list[i]
 		calls += c // add all the calls made by descendants
@@ -21,19 +23,19 @@ func RecursiveRodCutting(length int, list map[int]int) (int, int) {
 	return max, calls // the solution and the # of recursive calls required
 }
 
-func MemoisedRodCutting(length int, list map[int]int) (int, int) {
+func MemoisedRodCutting[L types.Number, T types.Number](length L, list map[L]T) (T, int) {
 
-	memo := make(map[int]int)
+	memo := make(map[L]T)
 
 	return memoisedRodCutting(length, list, memo)
 
 }
 
-func memoisedRodCutting(length int, list, memo map[int]int) (int, int) {
+func memoisedRodCutting[L types.Number, T types.Number](length L, list, memo map[L]T) (T, int) {
 	calls := 1 // counting the call in the current instance
 
-	if length == 0 {
-		return 0, calls
+	if length == L(0) {
+		return T(0), calls
 	}
 
 	val, ok := memo[length]
@@ -42,8 +44,8 @@ func memoisedRodCutting(length int, list, memo map[int]int) (int, int) {
 		return val, calls
 	}
 
-	max := -1
-	for i:=1; i<=length; i++ {
+	max := T(-1)
+	for i:= L(1); i<=length; i++ {
 		p, c :=  memoisedRodCutting(length-i, list, memo)
 		part := p + list[i]
 		calls += c // add all the calls made by descendants

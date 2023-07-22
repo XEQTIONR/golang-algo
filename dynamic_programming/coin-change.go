@@ -1,9 +1,11 @@
 package dynamic_programming
 
-import "math"
+import (
+	"math"
+	"example/algo/types"
+)
 
-func RecursiveCoinChange(total int, denom []int) (int, int) {
-
+func RecursiveCoinChange[T types.Number](total T, denom []T) (int, int) {
 	min := math.MaxInt
 	calls := 1
 
@@ -13,29 +15,27 @@ func RecursiveCoinChange(total int, denom []int) (int, int) {
 
 	for _, d := range denom {
 		if d <= total {
-				m, c := RecursiveCoinChange(total-d, denom)
-				m++ // add one coin of d denomination
-				calls+= c
+				count, k := RecursiveCoinChange(total-d, denom)
+				count++ // add one coin of d denomination
+				calls += k
 
-				if m < min {
-					min = m
+				if count < min {
+					min = count
 				}
 		}
 	}
 	return min, calls
 }
 
-func MemoisedCoinChange(total int, denom []int) (int, int) {
-
-	memo := make(map[int]int)
+func MemoisedCoinChange[T types.Number](total T, denom []T) (int, int) {
+	memo := make(map[T]int)
 	return memoisedCoinChange(total, denom, memo)
 }
 
-func memoisedCoinChange(total int, denom []int, memo map[int]int) (int, int) {
-
+func memoisedCoinChange[T types.Number](total T, denom []T, memo map[T]int) (int, int) {
 	min := math.MaxInt
 	calls := 1
-	var m int
+	var count int
 
 	if total == 0 {
 		return 0, calls
@@ -46,15 +46,15 @@ func memoisedCoinChange(total int, denom []int, memo map[int]int) (int, int) {
 			val, ok  := memo[total-d]
 
 			if ok {
-				m = val
+				count = val
 			} else {
-				n, c := memoisedCoinChange(total-d, denom, memo)
-				m = n + 1 // add one coin of d denomination
-				calls+= c
+				n, k := memoisedCoinChange(total-d, denom, memo)
+				count = n + 1 // add one coin of d denomination
+				calls += k
 			}
 
-			if m < min {
-				min = m
+			if count < min {
+				min = count
 				memo[total-d] = min
 			}
 		}

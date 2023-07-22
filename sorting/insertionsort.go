@@ -18,7 +18,7 @@ func InsertionSort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 		j:= i-1
 		for j>=0 {
 			comparisons++
-			if (asc && arr[j] > elem) || ( !asc && arr[j] <= elem) { // if we werent counting comparisons this could be in the loop condition.
+			if (asc && arr[j] > elem) || (!asc && arr[j] <= elem) { // if we werent counting comparisons this could be in the loop condition.
 				arr[j+1] = arr[j]
 				swaps++
 				j--
