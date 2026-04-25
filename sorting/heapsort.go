@@ -18,7 +18,7 @@ func Heapsort[T types.Number](arr []T, asc bool) ([]T, int, int) {
 	fmt.Println("Heapsort");
 	fmt.Printf("Before sort: %v\n", arr)
 
-	heap.buildHeap(heap.size, asc)
+	heap.buildHeap(asc)
 	for i:= len(heap.array) - 1; i>0; i-- {
 		swap(0, i)
 		heap.size--
@@ -64,9 +64,8 @@ func (h *Heap[T]) heapify(i int, asc bool) {
 	}
 }
 
-func (h *Heap[T]) buildHeap(n int, asc bool) {
-	h.size = n
-	for i:= n/2; i>=0; i-- {
+func (h *Heap[T]) buildHeap(asc bool) {
+	for i:= h.size/2; i>=0; i-- {
 		h.heapify(i, asc)
 	}
 }
